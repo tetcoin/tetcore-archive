@@ -229,8 +229,8 @@ where
                 _ = rx.recv_async() => break,
             }
         }
-        listener.kill_async().await;
         Self::kill_actors(actors).await?;
+        listener.kill_async().await;
         Ok(())
     }
 
