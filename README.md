@@ -1,6 +1,6 @@
 <div align="center">
 
-# Substrate Archive
+# Tetcore Archive
 
 ### Blockchain Indexing Engine
 
