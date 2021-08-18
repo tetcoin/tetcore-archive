@@ -97,6 +97,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "ahash"
+version = "0.7.4"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "43bb833f0bf979d8475d38fbf09ed3b8a55e1885fe93ad3f93239fc6a4f17b98"
+dependencies = [
+ "getrandom 0.2.0",
+ "once_cell",
+ "version_check",
+]
+
+[[package]]
 name = "aho-corasick"
 version = "0.7.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -301,12 +312,12 @@ dependencies = [
 
 [[package]]
 name = "async-rustls"
-version = "0.1.2"
+version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "7f38092e8f467f47aadaff680903c7cbfeee7926b058d7f40af2dd4c878fbdee"
+checksum = "9c86f33abd5a4f3e2d6d9251a9e0c6a7e52eb1113caf893dae8429bf4a53f378"
 dependencies = [
  "futures-lite",
- "rustls 0.18.1",
+ "rustls 0.19.0",
  "webpki",
 ]
 
@@ -540,17 +551,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5d6d530bdd2d52966a6d03b7a964add7ae1a288d25214066fd4b600f0f796400"
 dependencies = [
  "arrayvec 0.4.12",
- "constant_time_eq",
-]
-
-[[package]]
-name = "blake2b_simd"
-version = "0.5.11"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "afa748e348ad3be8263be728124b24a24f268266f6f5d58af9d75f6a40b5c587"
-dependencies = [
- "arrayref",
- "arrayvec 0.5.2",
  "constant_time_eq",
 ]
 
@@ -837,7 +837,7 @@ dependencies = [
  "rayon",
  "rmp-serde 0.14.4",
  "serde",
- "sqlx",
+ "sqlx 0.4.2",
  "thiserror",
 ]
 
@@ -1006,6 +1006,21 @@ checksum = "d663548de7f5cca343f1e0a48d14dcfb0e9eb4e079ec58883b7251539fa10aeb"
 dependencies = [
  "build_const",
 ]
+
+[[package]]
+name = "crc"
+version = "2.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "10c2722795460108a7872e1cd933a85d6ec38abc4baecad51028f702da28889f"
+dependencies = [
+ "crc-catalog",
+]
+
+[[package]]
+name = "crc-catalog"
+version = "1.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ccaeedb56da03b09f598226e25e80088cb4cd25f316e6e4df7d695f0feeb1403"
 
 [[package]]
 name = "crc32fast"
@@ -1256,10 +1271,19 @@ dependencies = [
 ]
 
 [[package]]
-name = "dirs-sys"
-version = "0.3.5"
+name = "dirs"
+version = "3.0.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "8e93d7f5705de3e49895a2b5e0b8855a1c27f080192ae9c32a6432d50741a57a"
+checksum = "30baa043103c9d0c2a57cf537cc2f35623889dc0d405e6c3cccfadbc81c71309"
+dependencies = [
+ "dirs-sys",
+]
+
+[[package]]
+name = "dirs-sys"
+version = "0.3.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "03d86534ed367a67548dc68113a0f5db55432fdfbb6e6f9d77704397d95d5780"
 dependencies = [
  "libc",
  "redox_users",
@@ -1867,6 +1891,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "futures-intrusive"
+version = "0.4.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "62007592ac46aa7c2b6416f7deb9a8a8f63a01e0f1d6e1787d5630170db2b63e"
+dependencies = [
+ "futures-core",
+ "lock_api 0.4.1",
+ "parking_lot 0.11.1",
+]
+
+[[package]]
 name = "futures-io"
 version = "0.3.12"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2161,12 +2196,30 @@ dependencies = [
 ]
 
 [[package]]
+name = "hashbrown"
+version = "0.11.2"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "ab5ef0d4909ef3724cc8cce6ccc8572c5c817592e9285f5464f8e86f8bd3726e"
+dependencies = [
+ "ahash 0.7.4",
+]
+
+[[package]]
 name = "hashlink"
 version = "0.6.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d99cf782f0dc4372d26846bec3de7804ceb5df083c2d4462c0b8d2330e894fa8"
 dependencies = [
- "hashbrown",
+ "hashbrown 0.9.1",
+]
+
+[[package]]
+name = "hashlink"
+version = "0.7.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "7249a3129cbc1ffccd74857f81464a323a152173cdb134e0fd81bc803b29facf"
+dependencies = [
+ "hashbrown 0.11.2",
 ]
 
 [[package]]
@@ -2492,7 +2545,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "55e2e4c765aa53a0424761bf9f41aa7a6ac1efa87238f59560640e27fca028f2"
 dependencies = [
  "autocfg",
- "hashbrown",
+ "hashbrown 0.9.1",
  "serde",
 ]
 
@@ -3351,7 +3404,7 @@ version = "0.6.3"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "3aae342b73d57ad0b8b364bd12584819f2c1fe9114285dfcf8b0722607671635"
 dependencies = [
- "hashbrown",
+ "hashbrown 0.9.1",
 ]
 
 [[package]]
@@ -3442,7 +3495,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6cbd2a22f201c03cc1706a727842490abfea17b7b53260358239828208daba3c"
 dependencies = [
  "hash-db",
- "hashbrown",
+ "hashbrown 0.9.1",
  "parity-util-mem",
 ]
 
@@ -4498,7 +4551,7 @@ checksum = "8f17f15cb05897127bf36a240085a1f0bbef7bce3024849eccf7f93f6171bc27"
 dependencies = [
  "cfg-if 1.0.0",
  "ethereum-types",
- "hashbrown",
+ "hashbrown 0.9.1",
  "impl-trait-for-tuples 0.2.0",
  "lru",
  "parity-util-mem-derive",
@@ -5782,13 +5835,12 @@ dependencies = [
 
 [[package]]
 name = "redox_users"
-version = "0.3.5"
+version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "de0737333e7a9502c789a36d7c7fa6092a49895d4faa31ca5df163857ded2e9d"
+checksum = "528532f3d801c87aec9def2add9ca802fe569e44a544afe633765267840abe64"
 dependencies = [
- "getrandom 0.1.15",
- "redox_syscall 0.1.57",
- "rust-argon2",
+ "getrandom 0.2.0",
+ "redox_syscall 0.2.4",
 ]
 
 [[package]]
@@ -6004,18 +6056,6 @@ dependencies = [
  "xcm",
  "xcm-builder",
  "xcm-executor",
-]
-
-[[package]]
-name = "rust-argon2"
-version = "0.8.2"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9dab61250775933275e84053ac235621dfb739556d5c54a2f2e9313b7cf43a19"
-dependencies = [
- "base64 0.12.3",
- "blake2b_simd",
- "constant_time_eq",
- "crossbeam-utils 0.7.2",
 ]
 
 [[package]]
@@ -8118,8 +8158,18 @@ version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e1a98f9bf17b690f026b6fec565293a995b46dfbd6293debcb654dcffd2d1b34"
 dependencies = [
- "sqlx-core",
- "sqlx-macros",
+ "sqlx-core 0.4.2",
+ "sqlx-macros 0.4.2",
+]
+
+[[package]]
+name = "sqlx"
+version = "0.5.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "b977121ecc75cadd442a6a8c600f5ded6d7117a46d55ed417a815bd94b2af237"
+dependencies = [
+ "sqlx-core 0.5.6",
+ "sqlx-macros 0.5.6",
 ]
 
 [[package]]
@@ -8134,8 +8184,7 @@ dependencies = [
  "bitflags",
  "byteorder",
  "bytes 0.5.6",
- "chrono",
- "crc",
+ "crc 1.8.1",
  "crossbeam-channel",
  "crossbeam-queue 0.3.1",
  "crossbeam-utils 0.8.1",
@@ -8143,7 +8192,7 @@ dependencies = [
  "futures-channel",
  "futures-core",
  "futures-util",
- "hashlink",
+ "hashlink 0.6.0",
  "hex",
  "hmac 0.10.1",
  "itoa",
@@ -8155,14 +8204,60 @@ dependencies = [
  "parking_lot 0.11.1",
  "percent-encoding 2.1.0",
  "rand 0.7.3",
- "rustls 0.18.1",
+ "sha-1 0.9.2",
+ "sha2 0.9.2",
+ "smallvec 1.6.1",
+ "sqlformat",
+ "sqlx-rt 0.2.0",
+ "stringprep",
+ "thiserror",
+ "url 2.2.0",
+ "whoami",
+]
+
+[[package]]
+name = "sqlx-core"
+version = "0.5.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "6da11206ae9ba3ececf83d44aef533c0d8176ae430cfaa14b408ce8b6bc4ab4b"
+dependencies = [
+ "ahash 0.7.4",
+ "atoi",
+ "base64 0.13.0",
+ "bitflags",
+ "byteorder",
+ "bytes 1.0.0",
+ "chrono",
+ "crc 2.0.0",
+ "crossbeam-channel",
+ "crossbeam-queue 0.3.1",
+ "crossbeam-utils 0.8.1",
+ "dirs",
+ "either",
+ "futures-channel",
+ "futures-core",
+ "futures-intrusive",
+ "futures-util",
+ "hashlink 0.7.0",
+ "hex",
+ "hmac 0.10.1",
+ "itoa",
+ "libc",
+ "log",
+ "md-5",
+ "memchr",
+ "once_cell",
+ "parking_lot 0.11.1",
+ "percent-encoding 2.1.0",
+ "rand 0.8.3",
+ "rustls 0.19.0",
  "serde",
  "serde_json",
  "sha-1 0.9.2",
  "sha2 0.9.2",
  "smallvec 1.6.1",
  "sqlformat",
- "sqlx-rt",
+ "sqlx-rt 0.5.6",
  "stringprep",
  "thiserror",
  "url 2.2.0",
@@ -8182,15 +8277,35 @@ dependencies = [
  "either",
  "futures 0.3.12",
  "heck",
- "hex",
  "lazy_static",
+ "proc-macro2 1.0.24",
+ "quote 1.0.7",
+ "sha2 0.9.2",
+ "sqlx-core 0.4.2",
+ "sqlx-rt 0.2.0",
+ "syn 1.0.60",
+ "url 2.2.0",
+]
+
+[[package]]
+name = "sqlx-macros"
+version = "0.5.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "419f9005ad3b065ab4e774361b0d56a24e8e3dc9b2c9ddeaf018b5fdc1166ec2"
+dependencies = [
+ "dotenv",
+ "either",
+ "futures 0.3.12",
+ "heck",
+ "hex",
+ "once_cell",
  "proc-macro2 1.0.24",
  "quote 1.0.7",
  "serde",
  "serde_json",
  "sha2 0.9.2",
- "sqlx-core",
- "sqlx-rt",
+ "sqlx-core 0.5.6",
+ "sqlx-rt 0.5.6",
  "syn 1.0.60",
  "url 2.2.0",
 ]
@@ -8200,6 +8315,12 @@ name = "sqlx-rt"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "63fc5454c9dd7aaea3a0eeeb65ca40d06d0d8e7413a8184f7c3a3ffa5056190b"
+
+[[package]]
+name = "sqlx-rt"
+version = "0.5.6"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "52d39baa13314f936c5991429b0b656980f52d23dfb15078bbea2c51f5086eeb"
 dependencies = [
  "async-rustls",
  "async-std",
@@ -8377,7 +8498,7 @@ dependencies = [
  "flate2",
  "flume",
  "futures 0.3.12",
- "hashbrown",
+ "hashbrown 0.9.1",
  "hex",
  "itertools 0.10.0",
  "itoa",
@@ -8402,7 +8523,7 @@ dependencies = [
  "sp-core",
  "sp-runtime",
  "sp-tracing",
- "sqlx",
+ "sqlx 0.5.6",
  "substrate-archive-backend",
  "substrate-archive-common",
  "tempfile",
@@ -8419,7 +8540,7 @@ dependencies = [
  "arc-swap",
  "futures 0.3.12",
  "hash-db",
- "hashbrown",
+ "hashbrown 0.9.1",
  "kvdb",
  "kvdb-rocksdb",
  "log",
@@ -8457,7 +8578,7 @@ dependencies = [
  "serde",
  "sp-runtime",
  "sp-storage",
- "sqlx",
+ "sqlx 0.5.6",
  "xtra",
 ]
 
@@ -9104,7 +9225,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "5cc176c377eb24d652c9c69c832c832019011b6106182bf84276c66b66d5c9a6"
 dependencies = [
  "hash-db",
- "hashbrown",
+ "hashbrown 0.9.1",
  "log",
  "rustc-hex",
  "smallvec 1.6.1",
